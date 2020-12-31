@@ -1,0 +1,7 @@
+# linux configs
+
+# groupadd FreeHub
+# useradd --system --no-create-home -G FreeHub freehub
+# sed -i '%FreeHub ALL = (ALL) NOPASSWD: ALL' /etc/sudors
+
+# check hostapd and dnsmasq installation
