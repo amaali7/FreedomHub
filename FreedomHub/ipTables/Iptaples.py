@@ -35,14 +35,18 @@ class FileWithRoot():
         
         coolText = text.replace('\n', "\\n")
         if self.rootNeed:
+            move = "sudo mv "+self.path+self.name +" "+self.path+self.name+'.backup'
             command = "echo \"" + coolText+"\" | sudo tee -a "+self.path+self.name
-            instruction =  run(command, shell=True, text=True, capture_output=DEVNULL)
+            instruction_m =  run(move, shell=True, text=True, capture_output=DEVNULL)
+            instruction_c =  run(command, shell=True, text=True, capture_output=DEVNULL)
         
         else:
-            command = "echo \"" + coolText+"\" | tee -a "+self.path+self.name
-            instruction =  run(command, shell=True, text=True, capture_output=DEVNULL)
+            move = "mv "+self.path+self.name +" "+self.path+self.name+'.backup'
+            command = "echo \"" + coolText+"\" | sudo tee -a "+self.path+self.name
+            instruction_m =  run(move, shell=True, text=True, capture_output=DEVNULL)
+            instruction_c =  run(command, shell=True, text=True, capture_output=DEVNULL)
         
-        if instruction.returncode == 0:
+        if instruction_c.returncode == 0 and instruction_m.returncode == 0:
             return True
         else:
             return False
