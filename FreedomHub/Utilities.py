@@ -2,7 +2,7 @@ import os
 from subprocess import run, DEVNULL
 
 
-class FileWithRoot():
+class FileWithRootA():
 
     """
         This class for write file with or without root access
@@ -47,6 +47,30 @@ class FileWithRoot():
             instruction_c =  run(command, shell=True, text=True, capture_output=DEVNULL)
         
         if instruction_c.returncode == 0 and instruction_m.returncode == 0:
+            return True
+        else:
+            return False
+
+
+class DebianPackage():
+    
+    def __init__(self, packageName):
+
+        self.packageName = packageName
+        self.isExist = self.check()
+
+    def check(self):
+        dpkg_check = "dpkg -l "
+        instraction = run(dpkg_check+self.packageName, shell=True, capture_output=DEVNULL)
+        if instraction.returncode == 0:
+            return True
+        else:
+            return False
+
+    def remove(self):
+        dpkg_check = "sudo apt remove "
+        instraction = run(dpkg_check+self.packageName+" -y", shell=True, capture_output=DEVNULL)
+        if instraction.returncode == 0:
             return True
         else:
             return False
