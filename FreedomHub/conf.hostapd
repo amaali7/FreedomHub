@@ -1,0 +1,42 @@
+# Host access point config file 
+
+# device name 
+interface=wlan0
+
+# Driver interface
+driver=hostap
+
+# SSID for the network
+ssid=ssidname
+# set appropriate country parameters (maybe required for regulatory reasons)
+country_code=GB
+
+# Operation mode - for 802.11n still use g to indicate using same band as g devices
+hw_mode=g
+
+# set channel - channel=0 for Automatic Channel Select
+channel=0
+
+# mac address access list - 0 = accept unless in deny
+macaddr_acl=1
+accept_mac_file=/etc/hostapd/hostapd.accept
+
+## add deny rules here if required
+#deny_mac_file=/etc/hostapd/hostapd.deny
+
+# Use shared key authentication
+auth_algs=1
+
+# Enable WPA2
+wpa=2
+
+# set passphrase
+wpa_passphrase=passphrase
+
+# Use WPA PSK
+wpa_key_mgmt=WPA-PSK
+
+# Pairwise cipher for WPA (v1) 
+wpa_pairwise=TKIP 
+# Pairwise cipher for RSN/WPA2 
+rsn_pairwise=CCMP
