@@ -1,1 +1,1 @@
-# FreeHub Under Dev ^_^
+# FreedomHub Under Dev ^_^
